@@ -1,0 +1,6 @@
+# Introduction {.unnumbered}
+
+This tutorial covers how to go from raw data in a _Leishmania_ PrestoBlue assay to generating a dose-response curve and calculating IC50 values. 
+
+The R code will be very similar for each plate, so we can set it up so there's only a few things we need to change for each one. 
+

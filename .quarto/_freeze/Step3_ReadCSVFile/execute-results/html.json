@@ -1,0 +1,17 @@
+{
+  "hash": "541aa7b509edcfb862ce7bd342b2f230",
+  "result": {
+    "engine": "knitr",
+    "markdown": "# Read the CSV file into R \n\nIn R, the first line of code will be to read the CSV file. \n\nYou will want to use `headers = TRUE` so that the first row is saved as the column headers. \n\nYou will need to put in your filename where it says `\"Test_data.csv\"`\n\nAny text after a `#` is a _comment_ - a note to ourselves to remind us what the code does. \n\n\n::: {.cell}\n\n```{.r .cell-code}\n# Read the CSV file into R, and name it raw_data\nraw_data <- read.csv(\"Test_data.csv\", header = TRUE)\n```\n:::\n\n\nYou can run the code by highlighting the line and clicking \"Run\"\n\n`raw_data` should then appear in your Environment - you can click this to view the table. \n\nCheck your column headings are what you expect them to be and that there aren't any extra (empty) table cells! \n\n![Read the CSV file in R](ReadCSV.gif)",
+    "supporting": [
+      "Step3_ReadCSVFile_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

@@ -1,0 +1,26 @@
+project:
+  type: book
+
+book:
+  title: "Dose Response graphs in R"
+  author: "Lizzie Wadsworth"
+  date: "4/6/2026"
+  chapters:
+    - index.qmd
+    - Step1_FormatData.qmd
+    - Step2_PositCloud.qmd
+    - Step3_ReadCSVFile.qmd
+    - Step4_controls.qmd
+    - Step5_DrugInfo.qmd
+    - Step6_Addandrunfunction.qmd
+
+format:
+  html:
+    theme:
+      - cosmo
+      - brand
+  pdf:
+    documentclass: scrreprt
+
+
+

@@ -1,0 +1,17 @@
+{
+  "hash": "31e2a369a88d926667f1475a55a359f5",
+  "result": {
+    "engine": "knitr",
+    "markdown": "# Calculate the control values (Blank, Live cells, DMSO)\n\nWe can use the function `mean()` to calculate the average of a set of numbers. \nWe can use `$` to select the column of our dataframe, and `[1:3]` to select rows 1-3 (or any numbers). \n\n## Calculating the blank\n\nIf both rows of the blank are media only (Blank_L and Blank_R) you can calculate the blank with the line: \n\n\n::: {.cell}\n\n```{.r .cell-code}\nBlank_Average <- mean(mean(raw_data$Blank_L), mean(raw_data$Blank_R))\n```\n:::\n\n\nIf you have some of your wells as a media and drug control, we can calculate the blank values separately for the different controls: \n\n\n::: {.cell}\n\n```{.r .cell-code}\n# Media only control in rows 1-3 of Blank_L\nBlank_Average <- mean(raw_data$Blank_L[1:3])\n\n# If you have a media + drug (no cells control), e.g. in rows 4-6 of Blank_L\nMedia_drug1_control <- mean(raw_data$Blank_L[4:6])\n```\n:::\n\n\n## Calculating the Live/ DMSO controls \n\nYou can then calculate the Live and DMSO controls using these: \n\n\n::: {.cell}\n\n```{.r .cell-code}\n# Calculate Live cells average  (Live.DMSO rows 1-3)\nLive_cells <- mean(raw_data$Live.DMSO[1:3]) - Blank_Average\n\n# Calculate DMSO control average (Live.DMSO rows 4-6)\nDMSO_cells <- mean(raw_data$Live.DMSO[4:6]) - Blank_Average\n```\n:::\n",
+    "supporting": [
+      "Step4_controls_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

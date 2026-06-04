@@ -1,0 +1,54 @@
+# Define drug information, concentrations and locations 
+
+For each drug, you'll want to include the name, concentrations, locations and which blank to use. Once you have this information, you can use the provided functions to calculate the IC50 and draw the dose-response curve. 
+
+You can copy the below code and add in your values, concentrations etc. 
+
+Keep the variables as `AmpB`, `Drug1` and `Drug2` as we'll use these in the next step. 
+
+```{r}
+#| eval: false
+# Data for AmpB
+AmpB <- list(name = "Amphotericin B", 
+          start_conc = 1.8, 
+          unit = "µM",
+          dilution_factor = 3, 
+          col_start = 3, 
+          col_stop = 5, 
+          blank = Blank_Average, 
+          positive_control = Live_cells)
+
+# Data for Drug 1
+Drug1 <- list(name = "Caffeic Acid", 
+             start_conc = 277.5, 
+             unit = "µM",
+             dilution_factor = 2, 
+             col_start = 6, 
+             col_stop = 8, 
+             blank = Blank_Average, 
+             positive_control = DMSO_cells)
+
+# Data for Drug 2 
+Drug2 <- list(name = "CD9", 
+             start_conc = 141.32, 
+             unit = "µM",
+             dilution_factor = 2, 
+             col_start = 9, 
+             col_stop = 11, 
+             blank = Blank_Average, 
+             positive_control = DMSO_cells)
+```
+
+See the below table for an explanation of each value. 
+
+| Parameter | Example Value | Meaning |
+|:---|:---|:---|
+| `name` | "Amphotericin B" | The name you want to be annotated on the figures for each drug |
+| `start_conc` | 1.8 | The highest concentration tested in the assay |
+| `unit` | "µM" | The units of the concentration given |
+| `dilution_factor` | 3 | The dilution factor by which the drug concentration drops at each step, eg. 3 for a 3x dilution |
+| `col_start` | 3 | Which column the drug starts at (e.g. column 3) |
+| `col_stop` | 5 | Which column the drug ends at (e.g. column 5, as it is in columns 3-5) |
+| `blank` | `Blank_Average` | Which of the calculated blank values you want to use (e.g. Blank_Average or Media_drug1_control) |
+| `positive_control` | `Live_cells` | Whether you are comparing to Live Cells or the DMSO treated cells as a positive control |
+
