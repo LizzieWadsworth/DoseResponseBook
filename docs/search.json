@@ -98,5 +98,45 @@
     "crumbs": [
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Make your IC50 calculations and Dose Response graphs</span>"
     ]
+  },
+  {
+    "objectID": "Convert_conc_to_M.html",
+    "href": "Convert_conc_to_M.html",
+    "title": "7  Convert concentrations from mg/ml to uM",
+    "section": "",
+    "text": "7.1 Step 1: Convert from M per L to M per ml\nCalculations (with units) to show how to go from a molecular weight, grams and mls to a M concentration.\nExample Compound:\nMolecular weight is given as g/mol. (This is how many g in 1 L solvent is 1 M)\nWe want to convert from mol to M (molar concentration)\n\\[\n\\text{M} = \\frac{\\text{mol}}{\\text{L}}\n\\]\nRearranging this: \\[\n\\text{mol} = \\text{M} \\times \\text{L}\n\\]\nWhich means we can change our units:\n\\[\n\\frac{656 g}{\\text{mol}} = \\frac{656 g}{\\text{M} \\times \\text{L}}\n\\]\nNow we can convert from L to ml (as we’re not adding L of solvent!).\nWe can multiply by 1 and the value will be the same. There are 1000 mL in 1 L, so 1L/1000ml = 1.\n\\[\n\\frac{656 g}{\\text{M} \\times \\cancel{L}} \\times \\frac{1 \\cancel{L}}{1000 \\text{ml}} = \\frac{656 g}{1000 \\text{M} \\times \\text{ml}}\n\\]",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Convert concentrations from mg/ml to uM</span>"
+    ]
+  },
+  {
+    "objectID": "Convert_conc_to_M.html#step-2-use-the-weight-in-g",
+    "href": "Convert_conc_to_M.html#step-2-use-the-weight-in-g",
+    "title": "7  Convert concentrations from mg/ml to uM",
+    "section": "7.2 Step 2: Use the weight in g",
+    "text": "7.2 Step 2: Use the weight in g\nNow we can divide our weight in g by the molecular weight, to get the M in every 1 ml.\n\\[\n\\frac{0.3853g}{1} \\div \\frac{656 g}{1000 \\text{M} \\times \\text{ml}}\n\\]\nWhen dividing two fractions, you can flip one and multiply instead. \\[\n\\frac{0.3853 \\cancel{g}}{1} \\times \\frac{1000 \\text{M} \\times \\text{ml}}{656 \\cancel{g}} = \\frac{385.3 \\text{M} \\times \\text{ml}}{656} = 0.5873 \\text{M} \\times \\text{ml}\n\\]",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Convert concentrations from mg/ml to uM</span>"
+    ]
+  },
+  {
+    "objectID": "Convert_conc_to_M.html#step-3-divide-by-mililitres-of-solvent",
+    "href": "Convert_conc_to_M.html#step-3-divide-by-mililitres-of-solvent",
+    "title": "7  Convert concentrations from mg/ml to uM",
+    "section": "7.3 Step 3: Divide by mililitres of solvent",
+    "text": "7.3 Step 3: Divide by mililitres of solvent\nNow we can use the number of ml of solvent that we dissolved the compound in, to get the M concentration.\n\\[\n0.5873 \\text{M} \\times \\text{ml} \\div 1 \\text{ml} = \\frac{0.5873 \\text{M} \\times \\cancel{ml}}{1 \\cancel{ml}} = 0.5873 \\text{M}\n\\]",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Convert concentrations from mg/ml to uM</span>"
+    ]
+  },
+  {
+    "objectID": "Convert_conc_to_M.html#final-concentration",
+    "href": "Convert_conc_to_M.html#final-concentration",
+    "title": "7  Convert concentrations from mg/ml to uM",
+    "section": "7.4 Final concentration",
+    "text": "7.4 Final concentration\nYou can then work out the mM or μM concentration.\n\n\n\nConcentration\nUnits\nCalculation\n\n\n\n\n0.5873\nM\nAs above\n\n\n587.3\nmM\n1000 mM in every 1 M (\\(\\times 1000\\))\n\n\n587300\nμM\n1000 μM in every 1 M (\\(\\times 1000\\))",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Convert concentrations from mg/ml to uM</span>"
+    ]
   }
 ]

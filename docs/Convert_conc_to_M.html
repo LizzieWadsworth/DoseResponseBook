@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>convert_conc_to_m</title>
+<title>7&nbsp; Convert concentrations from mg/ml to uM – Dose Response graphs in R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,18 +23,52 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="Convert_conc_to_M_files/libs/clipboard/clipboard.min.js"></script>
-<script src="Convert_conc_to_M_files/libs/quarto-html/quarto.js" type="module"></script>
-<script src="Convert_conc_to_M_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="Convert_conc_to_M_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="Convert_conc_to_M_files/libs/quarto-html/popper.min.js"></script>
-<script src="Convert_conc_to_M_files/libs/quarto-html/tippy.umd.min.js"></script>
-<script src="Convert_conc_to_M_files/libs/quarto-html/anchor.min.js"></script>
-<link href="Convert_conc_to_M_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="Convert_conc_to_M_files/libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="Convert_conc_to_M_files/libs/bootstrap/bootstrap.min.js"></script>
-<link href="Convert_conc_to_M_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="Convert_conc_to_M_files/libs/bootstrap/bootstrap-d6a003b94517c951b2d65075d42fb01b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./Step6_Addandrunfunction.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-27c261d06b905028a18691de25d09dde.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -68,17 +102,129 @@ window.Quarto = {
 
 </head>
 
-<body class="fullcontent quarto-light">
+<body class="nav-sidebar floating quarto-light">
 
-<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
-
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Convert_conc_to_M.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Convert concentrations from mg/ml to uM</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Dose Response graphs in R</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Step1_FormatData.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Put the data into a useable format.</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Step2_PositCloud.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Set up Posit Cloud workspace, upload the CSV file, and create an R file.</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Step3_ReadCSVFile.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Read the CSV file into R</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Step4_controls.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Calculate the control values (Blank, Live cells, DMSO)</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Step5_DrugInfo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Define drug information, concentrations and locations</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Step6_Addandrunfunction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Make your IC50 calculations and Dose Response graphs</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Convert_conc_to_M.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Convert concentrations from mg/ml to uM</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#step-1-convert-from-m-per-l-to-m-per-ml" id="toc-step-1-convert-from-m-per-l-to-m-per-ml" class="nav-link active" data-scroll-target="#step-1-convert-from-m-per-l-to-m-per-ml"><span class="header-section-number">7.1</span> Step 1: Convert from M per L to M per ml</a></li>
+  <li><a href="#step-2-use-the-weight-in-g" id="toc-step-2-use-the-weight-in-g" class="nav-link" data-scroll-target="#step-2-use-the-weight-in-g"><span class="header-section-number">7.2</span> Step 2: Use the weight in g</a></li>
+  <li><a href="#step-3-divide-by-mililitres-of-solvent" id="toc-step-3-divide-by-mililitres-of-solvent" class="nav-link" data-scroll-target="#step-3-divide-by-mililitres-of-solvent"><span class="header-section-number">7.3</span> Step 3: Divide by mililitres of solvent</a></li>
+  <li><a href="#final-concentration" id="toc-final-concentration" class="nav-link" data-scroll-target="#final-concentration"><span class="header-section-number">7.4</span> Final concentration</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Convert concentrations from mg/ml to uM</span></h1>
+</div>
 
 
 
-<section id="convert-concentrations-from-mgml-to-um" class="level1">
-<h1>Convert concentrations from mg/ml to uM</h1>
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
 <p>Calculations (with units) to show how to go from a molecular weight, grams and mls to a M concentration.</p>
 <p>Example Compound:</p>
 <table class="caption-top table">
@@ -107,8 +253,8 @@ window.Quarto = {
 </tr>
 </tbody>
 </table>
-<section id="step-1-convert-from-m-per-l-to-m-per-ml" class="level2">
-<h2 class="anchored" data-anchor-id="step-1-convert-from-m-per-l-to-m-per-ml">Step 1: Convert from M per L to M per ml</h2>
+<section id="step-1-convert-from-m-per-l-to-m-per-ml" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="step-1-convert-from-m-per-l-to-m-per-ml"><span class="header-section-number">7.1</span> Step 1: Convert from M per L to M per ml</h2>
 <p>Molecular weight is given as g/mol. (This is how many g in 1 L solvent is 1 M)</p>
 <p>We want to convert from mol to M (molar concentration)</p>
 <p><span class="math display">\[
@@ -127,8 +273,8 @@ window.Quarto = {
 \frac{656 g}{\text{M} \times \cancel{L}} \times \frac{1 \cancel{L}}{1000 \text{ml}} = \frac{656 g}{1000 \text{M} \times \text{ml}}
 \]</span></p>
 </section>
-<section id="step-2-use-the-weight-in-g" class="level2">
-<h2 class="anchored" data-anchor-id="step-2-use-the-weight-in-g">Step 2: Use the weight in g</h2>
+<section id="step-2-use-the-weight-in-g" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="step-2-use-the-weight-in-g"><span class="header-section-number">7.2</span> Step 2: Use the weight in g</h2>
 <p>Now we can divide our weight in g by the molecular weight, to get the M in every 1 ml.</p>
 <p><span class="math display">\[
 \frac{0.3853g}{1} \div \frac{656 g}{1000 \text{M} \times \text{ml}}
@@ -137,15 +283,15 @@ window.Quarto = {
 \frac{0.3853 \cancel{g}}{1} \times \frac{1000 \text{M} \times \text{ml}}{656 \cancel{g}} = \frac{385.3 \text{M} \times \text{ml}}{656} = 0.5873 \text{M} \times \text{ml}
 \]</span></p>
 </section>
-<section id="step-3-divide-by-mililitres-of-solvent" class="level2">
-<h2 class="anchored" data-anchor-id="step-3-divide-by-mililitres-of-solvent">Step 3: Divide by mililitres of solvent</h2>
+<section id="step-3-divide-by-mililitres-of-solvent" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="step-3-divide-by-mililitres-of-solvent"><span class="header-section-number">7.3</span> Step 3: Divide by mililitres of solvent</h2>
 <p>Now we can use the number of ml of solvent that we dissolved the compound in, to get the M concentration.</p>
 <p><span class="math display">\[
 0.5873 \text{M} \times \text{ml} \div 1 \text{ml} = \frac{0.5873 \text{M} \times \cancel{ml}}{1 \cancel{ml}} = 0.5873 \text{M}
 \]</span></p>
 </section>
-<section id="final-concentration" class="level2">
-<h2 class="anchored" data-anchor-id="final-concentration">Final concentration</h2>
+<section id="final-concentration" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="final-concentration"><span class="header-section-number">7.4</span> Final concentration</h2>
 <p>You can then work out the mM or μM concentration.</p>
 <table class="caption-top table">
 <thead>
@@ -173,11 +319,11 @@ window.Quarto = {
 </tr>
 </tbody>
 </table>
-</section>
+
+
 </section>
 
-</main>
-<!-- /main column -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -578,6 +724,15 @@ window.Quarto = {
     }
   });
   </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./Step6_Addandrunfunction.html" class="pagination-link" aria-label="Make your IC50 calculations and Dose Response graphs">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Make your IC50 calculations and Dose Response graphs</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
 </div> <!-- /content -->
 
 

@@ -14,7 +14,7 @@ book:
     - Step4_controls.qmd
     - Step5_DrugInfo.qmd
     - Step6_Addandrunfunction.qmd
-    - Convert_conc_to_M.html
+    - Convert_conc_to_M.qmd
 
 format:
   html:
