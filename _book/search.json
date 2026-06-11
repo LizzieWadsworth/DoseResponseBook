@@ -1,0 +1,102 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Dose Response graphs in R",
+    "section": "",
+    "text": "Introduction\nThis tutorial covers how to go from raw data in a Leishmania PrestoBlue assay to generating a dose-response curve and calculating IC50 values.\nThe R code will be very similar for each plate, so we can set it up so there’s only a few things we need to change for each one.",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "Step1_FormatData.html",
+    "href": "Step1_FormatData.html",
+    "title": "1  Put the data into a useable format.",
+    "section": "",
+    "text": "Before we start, we can copy our raw plate results into an excel spreadsheet and add a column header to each one - whether the column is a Blank, Live/DMSO control, or which drug.\nFor example:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBlank_L\nLive.DMSO\nAmp_1\nAmp_2\nAmp_3\nCA_1\nCA_2\nCA_3\nCD9_1\nCD9_2\nCD9_3\nBlank_R\n\n\n\n\n15023\n37260\n16132\n14192\n14305\n24011\n23367\n23755\n19062\n22955\n21275\n15449\n\n\n14698\n31108\n14743\n14619\n14177\n26657\n26935\n26680\n23329\n24583\n23355\n14383\n\n\n14218\n29177\n14215\n13606\n12820\n31640\n34248\n33480\n27378\n26452\n26957\n14320\n\n\n12773\n24540\n13179\n13616\n13612\n36486\n40484\n38704\n27685\n26143\n26186\n13657\n\n\n12755\n23874\n26292\n27863\n26425\n41934\n45644\n42626\n26234\n24607\n25565\n12776\n\n\n12091\n22200\n29741\n30546\n29964\n45768\n41631\n42039\n28155\n26163\n29775\n12502\n\n\n\n\n\nThese headings are:\n\nBlanks: Blank_L and Blank_R (so we can easily pick one or the other)\nLive.DMSO: The Live and DMSO controls\nAmp_1-3: The three Amphotericin B columns\nCA1-3: Caffeic acid 1-3 (example Drug 1)\nCD91-3: CD9 1-3 (example Drug 2)\n\nOnce you’ve got this, you want to save the table as CSV (Comma Separated Variables) - this is easier to read in R.\n\n\n\nSave As CSV\n\n\n\n\n\n\n\n\nCaution\n\n\n\n\n\nA CSV file can only have one sheet - if you have multiple sheets they will be deleted!\nI recommend using a separate CSV file for each plate and give each one a unique name e.g. Plate1_10Dec25_compoundX_compoundY.csv",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Put the data into a useable format.</span>"
+    ]
+  },
+  {
+    "objectID": "Step2_PositCloud.html",
+    "href": "Step2_PositCloud.html",
+    "title": "2  Set up Posit Cloud workspace, upload the CSV file, and create an R file.",
+    "section": "",
+    "text": "Create a free account with Posit Cloud and sign in. You will not need a paid account for this work\nThen:\n\nClick \"New Project\" -&gt; \"New RStudio Project\" and wait for this to load\nClick the Upload button (under Files) and upload your CSV file.\nClick the New File icon -&gt; R Script\nClick the Save icon and give the file a name\n\nYou are now set up to start coding in R.\n\n\n\nSet up Posit Cloud",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Set up Posit Cloud workspace, upload the CSV file, and create an R file.</span>"
+    ]
+  },
+  {
+    "objectID": "Step3_ReadCSVFile.html",
+    "href": "Step3_ReadCSVFile.html",
+    "title": "3  Read the CSV file into R",
+    "section": "",
+    "text": "In R, the first line of code will be to read the CSV file.\nYou will want to use headers = TRUE so that the first row is saved as the column headers.\nYou will need to put in your filename where it says \"Test_data.csv\"\nAny text after a # is a comment - a note to ourselves to remind us what the code does.\n\n# Read the CSV file into R, and name it raw_data\nraw_data &lt;- read.csv(\"Test_data.csv\", header = TRUE)\n\nYou can run the code by highlighting the line and clicking “Run”\nraw_data should then appear in your Environment - you can click this to view the table.\nCheck your column headings are what you expect them to be and that there aren’t any extra (empty) table cells!\n\n\n\nRead the CSV file in R",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Read the CSV file into R</span>"
+    ]
+  },
+  {
+    "objectID": "Step4_controls.html",
+    "href": "Step4_controls.html",
+    "title": "4  Calculate the control values (Blank, Live cells, DMSO)",
+    "section": "",
+    "text": "4.1 Calculating the blank\nWe can use the function mean() to calculate the average of a set of numbers. We can use $ to select the column of our dataframe, and [1:3] to select rows 1-3 (or any numbers).\nIf both rows of the blank are media only (Blank_L and Blank_R) you can calculate the blank with the line:\nBlank_Average &lt;- mean(mean(raw_data$Blank_L), mean(raw_data$Blank_R))\nIf you have some of your wells as a media and drug control, we can calculate the blank values separately for the different controls:\n# Media only control in rows 1-3 of Blank_L\nBlank_Average &lt;- mean(raw_data$Blank_L[1:3])\n\n# If you have a media + drug (no cells control), e.g. in rows 4-6 of Blank_L\nMedia_drug1_control &lt;- mean(raw_data$Blank_L[4:6])",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Calculate the control values (Blank, Live cells, DMSO)</span>"
+    ]
+  },
+  {
+    "objectID": "Step4_controls.html#calculating-the-live-dmso-controls",
+    "href": "Step4_controls.html#calculating-the-live-dmso-controls",
+    "title": "4  Calculate the control values (Blank, Live cells, DMSO)",
+    "section": "4.2 Calculating the Live/ DMSO controls",
+    "text": "4.2 Calculating the Live/ DMSO controls\nYou can then calculate the Live and DMSO controls using these:\n\n# Calculate Live cells average  (Live.DMSO rows 1-3)\nLive_cells &lt;- mean(raw_data$Live.DMSO[1:3]) - Blank_Average\n\n# Calculate DMSO control average (Live.DMSO rows 4-6)\nDMSO_cells &lt;- mean(raw_data$Live.DMSO[4:6]) - Blank_Average",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Calculate the control values (Blank, Live cells, DMSO)</span>"
+    ]
+  },
+  {
+    "objectID": "Step5_DrugInfo.html",
+    "href": "Step5_DrugInfo.html",
+    "title": "5  Define drug information, concentrations and locations",
+    "section": "",
+    "text": "For each drug, you’ll want to include the name, concentrations, locations and which blank to use. Once you have this information, you can use the provided functions to calculate the IC50 and draw the dose-response curve.\nYou can copy the below code and add in your values, concentrations etc.\nKeep the variables as AmpB, Drug1 and Drug2 as we’ll use these in the next step.\n\n# Data for AmpB\nAmpB &lt;- list(name = \"Amphotericin B\", \n          start_conc = 1.8, \n          unit = \"µM\",\n          dilution_factor = 3, \n          col_start = 3, \n          col_stop = 5, \n          blank = Blank_Average, \n          positive_control = Live_cells)\n\n# Data for Drug 1\nDrug1 &lt;- list(name = \"Caffeic Acid\", \n             start_conc = 277.5, \n             unit = \"µM\",\n             dilution_factor = 2, \n             col_start = 6, \n             col_stop = 8, \n             blank = Blank_Average, \n             positive_control = DMSO_cells)\n\n# Data for Drug 2 \nDrug2 &lt;- list(name = \"CD9\", \n             start_conc = 141.32, \n             unit = \"µM\",\n             dilution_factor = 2, \n             col_start = 9, \n             col_stop = 11, \n             blank = Blank_Average, \n             positive_control = DMSO_cells)\n\nSee the below table for an explanation of each value.\n\n\n\n\n\n\n\n\nParameter\nExample Value\nMeaning\n\n\n\n\nname\n“Amphotericin B”\nThe name you want to be annotated on the figures for each drug\n\n\nstart_conc\n1.8\nThe highest concentration tested in the assay\n\n\nunit\n“µM”\nThe units of the concentration given\n\n\ndilution_factor\n3\nThe dilution factor by which the drug concentration drops at each step, eg. 3 for a 3x dilution\n\n\ncol_start\n3\nWhich column the drug starts at (e.g. column 3)\n\n\ncol_stop\n5\nWhich column the drug ends at (e.g. column 5, as it is in columns 3-5)\n\n\nblank\nBlank_Average\nWhich of the calculated blank values you want to use (e.g. Blank_Average or Media_drug1_control)\n\n\npositive_control\nLive_cells\nWhether you are comparing to Live Cells or the DMSO treated cells as a positive control",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Define drug information, concentrations and locations</span>"
+    ]
+  },
+  {
+    "objectID": "Step6_Addandrunfunction.html",
+    "href": "Step6_Addandrunfunction.html",
+    "title": "6  Make your IC50 calculations and Dose Response graphs",
+    "section": "",
+    "text": "6.1 Install packages\nFirst you’ll need to install the packages needed:\n# Install packages\ninstall.packages(\"ggplot2\")\ninstall.packages(\"drc\")",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Make your IC50 calculations and Dose Response graphs</span>"
+    ]
+  },
+  {
+    "objectID": "Step6_Addandrunfunction.html#copy-and-run-the-below-code",
+    "href": "Step6_Addandrunfunction.html#copy-and-run-the-below-code",
+    "title": "6  Make your IC50 calculations and Dose Response graphs",
+    "section": "6.2 Copy and run the below code",
+    "text": "6.2 Copy and run the below code\nNow all of the setup for your plate is done, the rest we can use the same code for each one.\nSee the screencast below the code for how to use:\nIn this example, the ggplot graph doesn’t calculate correctly for AmpB, this is to do with the variability in the data as viability decreases for the first few dilutions\n\n# Import libraries\nlibrary(ggplot2)\nlibrary(drc)\n\n# Define functions\ncalculate_dilutions &lt;- function(highest_conc, dilution_factor, dilutions=5){\n  result_vector &lt;- highest_conc / (dilution_factor^(0:dilutions))  \n  return(result_vector)\n}\n\nplot_publication_curve &lt;- function(drug, raw_data_matrix) {\n  \n  # Extract data points for the chosen drug, using col_start and col_stop to select columns (all rows)\n  drug_raw_data &lt;- raw_data_matrix[, drug$col_start:drug$col_stop]\n  \n  # Calculate drug concentrations for each row using start concentration and dilution factor\n  concs &lt;- calculate_dilutions(drug$start_conc, drug$dilution_factor, dilutions = 5)\n  \n  # Make a big table with each concentration repeated for each raw value\n  drug_data &lt;- data.frame(\n    conc = rep(concs, times = ncol(drug_raw_data)),\n    raw_val = unlist(drug_raw_data)\n  )\n  \n  # Minus blank, and divide by positive control, to get % viability\n  drug_data$viability &lt;- ((drug_data$raw_val - drug$blank) / drug$positive_control) * 100\n  \n  # Use drm from drc package to fit a dose-response curve to the data\n  max_viability &lt;- max(drug_data$viability)\n  drug_model &lt;- drm(viability ~ conc, data = drug_data, fct = LL.4(fixed = c(NA, 0, max_viability, NA)))  \n  \n  # print the results \n  print(summary(drug_model))\n  \n  # calculate and print the IC50 value\n  ic50_info &lt;- ED(drug_model, 50, type = \"absolute\", display = FALSE)\n  cat(\"IC50 value: \", ic50_info[1], \" with standard error \", ic50_info[2], \"\\n\")\n  \n  # plot this dose-response model using Base R \n  plot(drug_model, broken = TRUE, type = \"all\", xlab = paste0(drug$name, \" (\",drug$unit,\")\"), ylab = \"Percent viability\")\n  dose_curve_baseR &lt;- recordPlot()\n  \n  # Use the model to create a set of predicted values, to use as a curve in a ggplot \n  prediction_data &lt;- expand.grid(conc=seq(from=min(concs), to=max(concs), length = 100))\n  pm &lt;- predict(drug_model, newdata=prediction_data, interval=\"confidence\")\n\n  prediction_data$p &lt;- pm[,1]\n  prediction_data$pmin &lt;- pm[,2]\n  prediction_data$pmax &lt;- pm[,3]\n  \n  xlabel &lt;- paste0(drug$name, \" (\",drug$unit,\")\")\n  \n  # plot this with ggplot\n  dose_curve_ggplot &lt;- ggplot(drug_data, aes(x = conc, y = viability)) + \n    # plot the raw values, add scatter points\n    geom_point() + \n    # add a ribbon using the predicted values\n    geom_ribbon(data=prediction_data, aes(x=conc, y=p, ymin=pmin, ymax=pmax), alpha = 0.2) + \n    geom_line(data=prediction_data, aes(x=conc, y=p)) +\n    # make the x axis a log scale\n    scale_x_log10() + \n    # x and y axis labels\n    xlab(xlabel) + ylab(\"Percent viability (cm)\") + \n    theme_minimal()\n    \n    \n  # return the values \n  return(list(IC50 = ic50_info, baseR = dose_curve_baseR, ggplot = dose_curve_ggplot)) \n}\n\n# Run the functions for each graph\nAmpB_graphs &lt;- plot_publication_curve(AmpB, raw_data)\nAmpB_graphs$IC50\nAmpB_graphs$baseR\nAmpB_graphs$ggplot\n\nDrug1_graphs &lt;- plot_publication_curve(Drug1, raw_data)\nDrug1_graphs$IC50 \nDrug1_graphs$baseR\nDrug1_graphs$ggplot\n\nDrug2_graphs &lt;- plot_publication_curve(Drug2, raw_data)\nDrug2_graphs$IC50\nDrug2_graphs$baseR\nDrug2_graphs$ggplot",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Make your IC50 calculations and Dose Response graphs</span>"
+    ]
+  },
+  {
+    "objectID": "Step6_Addandrunfunction.html#get-the-result",
+    "href": "Step6_Addandrunfunction.html#get-the-result",
+    "title": "6  Make your IC50 calculations and Dose Response graphs",
+    "section": "6.3 Get the result",
+    "text": "6.3 Get the result\nEach of the lines at the bottom will give you a different result:\n\nAmpB_graphs$IC50: The IC50 value and standard error for Amphotericin B\nAmpB_graphs$baseR: A simple dose-response curve\nAmpB_graphs$ggplot: A fancier dose-response curve (which doesn’t work for AmpB in this example)\n\nOnce you’ve run the whole code, you can select and run one of these lines at a time.\nThe IC50 values will appear in the console, and the plots will appear in the bottom right panel. You can export the plots as PNG files.\n\n\n\nRun code and extract results",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Make your IC50 calculations and Dose Response graphs</span>"
+    ]
+  }
+]

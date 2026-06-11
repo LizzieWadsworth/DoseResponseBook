@@ -1,0 +1,72 @@
+# Convert concentrations from mg/ml to uM 
+
+Calculations (with units) to show how to go from a molecular weight, grams and mls to a M concentration. 
+
+Example Compound: 
+
+| Item | Value | Units |
+| -- | -- | -- |
+| Molecular Weight | 656 | g/mol | 
+| Weight of compound | 0.3853 | g | 
+| Volume DMSO | 1 | ml | 
+
+## Step 1: Convert from M per L to M per ml 
+
+Molecular weight is given as g/mol. (This is how many g in 1 L solvent is 1 M)
+
+We want to convert from mol to M (molar concentration)
+
+$$ 
+\text{M} = \frac{\text{mol}}{\text{L}}
+$$
+
+Rearranging this: 
+$$ 
+\text{mol} = \text{M} \times \text{L} 
+$$
+
+Which means we can change our units: 
+
+$$ 
+\frac{656 g}{\text{mol}} = \frac{656 g}{\text{M} \times \text{L}}
+$$
+
+Now we can convert from L to ml (as we're not adding L of solvent!). 
+
+We can multiply by 1 and the value will be the same. There are 1000 mL in 1 L, so 1L/1000ml = 1. 
+
+$$ 
+\frac{656 g}{\text{M} \times \cancel{L}} \times \frac{1 \cancel{L}}{1000 \text{ml}} = \frac{656 g}{1000 \text{M} \times \text{ml}}
+$$
+
+## Step 2: Use the weight in g 
+
+Now we can divide our weight in g by the molecular weight, to get the M in every 1 ml. 
+
+$$ 
+\frac{0.3853g}{1} \div \frac{656 g}{1000 \text{M} \times \text{ml}} 
+$$
+
+When dividing two fractions, you can flip one and multiply instead. 
+$$ 
+\frac{0.3853 \cancel{g}}{1} \times \frac{1000 \text{M} \times \text{ml}}{656 \cancel{g}} = \frac{385.3 \text{M} \times \text{ml}}{656} = 0.5873 \text{M} \times \text{ml}
+$$
+
+## Step 3: Divide by mililitres of solvent
+
+Now we can use the number of ml of solvent that we dissolved the compound in, to get the M concentration. 
+
+$$ 
+0.5873 \text{M} \times \text{ml} \div 1 \text{ml} = \frac{0.5873 \text{M} \times \cancel{ml}}{1 \cancel{ml}} = 0.5873 \text{M} 
+$$
+
+## Final concentration
+
+You can then work out the mM or μM concentration. 
+
+| Concentration | Units | Calculation | 
+| -- | -- | -- | 
+0.5873 | M | As above | 
+587.3 | mM | 1000 mM in every 1 M ($\times 1000$)
+587300 | μM | 1000 μM in every 1 M ($\times 1000$)
+
