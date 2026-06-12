@@ -2,7 +2,7 @@
 
 Calculations (with units) to show how to go from a molecular weight, grams and mls to a M concentration. 
 
-Example Compound test: 
+Example Compound: 
 
 | Item | Value | Units |
 | -- | -- | -- |
